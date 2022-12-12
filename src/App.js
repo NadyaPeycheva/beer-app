@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { Fragment, useState } from "react";
+import { Redirect, Route } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Favorites from "./pages/Favourites";
+import Navigation from "./components/Navigation";
+import RandomBeer from "./components/beers/RandomBeer";
+import Modal from "./components/modal/Modal";
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+
+  const conectedToMetamask = () => {
+    console.log(window.ethereum);
+    if (window.ethereum) {
+      setIsLogged((state) => !state);
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Fragment>
+      {!isLogged && <Modal onClick={conectedToMetamask} />}
+      <header>
+        <Navigation />
       </header>
-    </div>
+      <main>
+        <Route path="/" exact>
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/favourites">
+          <Favorites />
+        </Route>
+        <Route path="/randomBeer">
+          <RandomBeer />
+        </Route>
+      </main>
+    </Fragment>
   );
 }
 

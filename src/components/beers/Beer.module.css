@@ -1,0 +1,42 @@
+.beerContainer{
+    flex-grow: 1;
+    border: 2px solid rgb(228, 225, 225);
+    border-radius: 4px;
+    width: 300px;
+    height: 300px;
+    margin:10px;
+    padding:20px;
+    font-family: sans-serif;
+    display: flex;
+}
+.imageContainer{
+    width:50%;
+    max-height: 300px;
+}
+.beerImage{
+    height: 100%;
+    display: inline-block;
+}
+.beerConteiner-content{
+    display: flex;
+}
+.beerContent p{
+    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.beerContent{
+    width: 50%;
+}
+
+
+@media only screen and (min-width:1550px){
+.imageContainer{
+    text-align: center;
+}
+.beerContainer{
+    flex-grow: unset;
+
+}
+}
